@@ -7,13 +7,16 @@ const bookShowContainer = document.querySelector("#book-show")
 const bookShowCopies = document.querySelector(".copies")
 let currentUser = 'bert.hilll'
 let currentUserId = '2'
+let currentUserIdInt = 2
 
 /*********Render Functions*********/
 function renderBook(bookObj){
     bookDisplayHome.innerHTML += `
     <div class="book-card"> 
-     <h2>${bookObj.title}</h2>
-     <h3> ${bookObj.author}</h3>
+     <h4>${bookObj.title}</h4>
+    
+     <h6> ${bookObj.author}</h6>
+     
      <p> ${bookObj.year} </p>
     </div>
     `
@@ -22,8 +25,8 @@ function renderBook(bookObj){
 function renderUser(userObj){
     userDisplayHome.innerHTML += `
     <div class="user">
-        <img class="user-img" src="${userObj.img}>
-        <div class="user-name> ${userObj.username} </div>
+        <img class="user-img" src="${userObj.img}">
+        <h4 class="name"> ${userObj.name.split(" ")[0]} </h4>
     </div>
     `
     
@@ -36,6 +39,12 @@ function renderBookshelfBook(book, copy) {
         <h4 class="author"> ${book.author} </h4>
         <h5 class="status"> ${copy.active} </h5>
     </div>
+    `
+}
+
+function renderNoBorrowings() {
+    userBorrowings.innerHTML += `
+        <h2> Visit the homepage to borrow some books! </h2>
     `
 }
 
@@ -58,13 +67,11 @@ function renderBookShow(bookObj) {
         <h4> ${bookObj.rating} </h4>
     </div>
     `
-    bookObj.book_copies.forEach(copy => {
-        console.log(copy)
-        bookShowCopies.innerHTML += `
-            <li> ${copy.condition} </li>
-            <li> ${copy.user} </li>
-            
-        `
+    console.log('wass')
+    bookObj.book_copies.forEach((copy) => {
+        const copyLi = document.createElement("li")
+        li.textContent = copy.condition
+        bookShowCopies.append(copyLi)
     })
 
 }
@@ -74,8 +81,12 @@ function getBooks() {
     fetch('http://localhost:3000/api/v1/books')
     .then(res => res.json())
     .then(bookArray => {
+        let i = 0
         bookArray.forEach((book) => {
-            renderBook(book)
+            if (i < 8) {
+                renderBook(book)
+            }
+            i++
         })
     })
 }
@@ -84,8 +95,12 @@ function getUsers() {
     fetch('http://localhost:3000/api/v1/users')
     .then(res => res.json())
     .then(UsersArray => {
+        let i = 0
         UsersArray.forEach((User) => {
-            renderUser(User)
+            if (i < 5) {
+                renderUser(User)
+            }
+            i++
         })
     })
 }
@@ -102,16 +117,21 @@ function getBookShelf() {
 }
 
 function getBorrowedBooks() {
-    client.get(`/users/${currentUserId}`)
-        .then(userObj => {
-            if (userObj.book_copies.length === 0) {
-                
-            }
-            let i = 0
-            userObj.book_copies.forEach((copy) => {
-                renderBorrowedBook(userObj.books[i], copy)
-                i++
+    client.get(`/book_copies/`)
+        .then(copyArray => {
+            let myBorrowedBooks = copyArray.filter(obj => {
+                return obj.renter_id === currentUserIdInt
             })
+            if (myBorrowedBooks.length === 0) {
+                renderNoBorrowings()
+            } else {
+                console.log('gotta fix this')
+                // client.get(``)
+                // userObj.book_copies.forEach((copy) => {
+                //     renderBorrowedBook(userObj.books[i], copy)
+                //     i++
+                // })
+            }
         })
 }
 
@@ -120,7 +140,7 @@ function getBookInfo(id){
     .then(rsp => rsp.json())
     .then(bookObj => {
         
-            renderBookShow(book)
+            renderBookShow(bookObj)
         }
         
     )
@@ -130,8 +150,8 @@ function getBookInfo(id){
 
 
 /*********Initialize*********/
-getBooks()
-getUsers()
+// getBooks()
+// getUsers()
 getBookShelf()
-
-getBookInfo(1)
+getBorrowedBooks()
+// getBookInfo(3)

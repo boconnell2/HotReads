@@ -5,11 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/main.css">
   <script src="./src/index.js" defer></script>
+  <script src="./src/FetchClient.js"></script>
   <title>Document</title>
 </head>
 <body>
-  <div id="container">
-    
+  <div class="book-store">
+    <div class="header">
+      <div class="browse">
+        
+          <div class="search-bar">
+          <input type="text" placeholder="Search Book" />
+          </div>
+      </div>
+     <div class="header-title">Hot<span>Reads🔥</span></div>
+      <div class="profile">
+          <div class="user-profile">
+            <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="" class="nav-user-img">
+          </div>
+          <div class="profile-menu">
+            <span>My Library</span> 
+          </div>
+      </div>
+   
+  </div>
+  <div id="container"> 
+  </div>
+  <div class="user-home">
+    <h3>Users Near You</h3>
+  </div>
+  <div id="my-library">
+    <h2> My Library</h2>
+    <div id="bookshelf-parent"> 
+      <h3> My Bookshelf </h3>
+      <div id="bookshelf-children"></div>
+    </div>
+    <div id="borrowings-parent">
+      <h3 id="borrowings"> My Borrowed Books </h3>
+      <div id="borrowings-children"></div>
+    </div>
+  </div>
+
+  <div id="book-show">
+    <div class="copies"></div>
   </div>
 </body>
 </html>

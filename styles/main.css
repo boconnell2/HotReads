@@ -1,0 +1,226 @@
+
+/* Navigation */
+
+* {
+    outline: none;
+    box-sizing: border-box;
+   }
+   
+   img {
+    max-width: 100%;
+   }
+   
+   html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+   }
+   
+   body {
+    background-color: #fff;
+    background-attachment: fixed;
+    font-family: "Roboto", sans-serif;
+    color: #3d4954;
+    font-weight: 400;
+    margin: 0;
+
+   }
+   
+   display {
+    display: flex;
+    align-items: center;
+   }
+   
+   .book-store {
+    align-items: center;
+    display: flex;
+    flex-direction: column; 
+    max-width: 1400px;
+    height: 100vh;
+    background-color: #f2f5f7;
+    margin: 0 auto;
+    overflow: scroll;
+    box-shadow: 0px 2px 50px 10px rgba(0, 0, 0, 0.21);
+   }
+   
+   .header {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 0 30px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #8b939c;
+    justify-content: space-between;
+    flex-shrink: 0;
+   }
+   
+   .search-bar {
+    position: relative;
+     height: 100%;
+     width: 100%;
+     display: block;
+     background-color: transparent;
+     border: none;
+     font-weight: 600;
+     padding: 0 10px 0 40px;
+     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%238b939c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='feather feather-search'%3e%3ccircle cx='11' cy='11' r='8'/%3e%3cpath d='M21 21l-4.35-4.35'/%3e%3c/svg%3e");
+     background-repeat: no-repeat;
+     background-size: 15px;
+     background-position: 15px 50%;
+     color: #ccd0d2;
+     font-family:"Roboto", sans-serif;
+    }
+   
+   .header-title {
+    font-size: 16px;
+    font-weight: 400;
+    margin-right: 120px;
+   }
+   
+   .header-title span {
+     font-weight: 500;
+     color: #3d4954;
+    }
+   
+   
+   .nav-user-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-right: 15px;
+   }
+   
+   .user-profile {
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    &:before {
+     content: "";
+     position: absolute;
+     background-color: #f86d72;
+     width: 7px;
+     height: 7px;
+     border-radius: 50%;
+     border: 2px solid var(--theme-bg-color);
+     right: 12px;
+     top: -3px;
+     border: 2px solid #fff;
+    }
+   }
+   
+   .profile {
+     display: flex;
+    align-items: center;
+    flex-shrink: 0;
+   }
+   
+
+
+/* HomePage */
+h3 .home-header {
+    align-items: left;
+}
+
+#container {
+    width: 100%;
+    display: flex;
+    
+    flex-flow: row wrap;
+    padding: 20px 10px 10px 10px;
+    margin: 0px auto;
+    justify-content: space-evenly;
+}
+
+.book-card {
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 5px;
+    width: 20%;
+    height: 200px;
+    margin-right: 1px;
+    border: 3px solid #a2a2a2;
+    /* -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 1px; */
+}
+
+
+.user-home {
+ width: 100%;
+    display: flex;   
+    flex-flow: row wrap;
+    padding: 20px 10px 10px 10px;
+    margin: 0px auto;
+    justify-content: space-evenly;
+} 
+
+.user {
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 5px; 
+}
+
+.user-img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid black;
+} 
+
+
+/* Library Page */
+
+#my-library {
+    width: 100%;
+    display: flex;
+    
+    flex-flow: row wrap;
+    padding: 20px 10px 10px 10px;
+    margin: 0px auto;
+    justify-content: space-evenly;
+}
+
+#bookshelf-parent{
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 5px;
+    margin-right: 1px;
+    border: 3px solid #a2a2a2;
+}
+
+
+
+div .myLibraryBook {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+
+#borrowings-parent {
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 5px;
+    margin-right: 1px;
+    border: 3px solid #a2a2a2;
+}

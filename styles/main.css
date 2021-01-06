@@ -56,6 +56,10 @@
     flex-shrink: 0;
    }
    
+   .browse {
+    display: flex;
+    align-items: center;
+   }
    .search-bar {
     position: relative;
      height: 100%;
@@ -201,7 +205,7 @@ h3 .home-header {
     align-items: center; 
     padding: 5px;
     margin-right: 1px;
-    border: 3px solid #a2a2a2;
+    /* border: 3px solid #a2a2a2; */
 }
 
 
@@ -222,5 +226,56 @@ div .myLibraryBook {
     align-items: center; 
     padding: 5px;
     margin-right: 1px;
-    border: 3px solid #a2a2a2;
+    /* border: 3px solid #a2a2a2; */
+}
+
+/***** Show Book Popup ******/
+
+#book-show-modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+    overflow-y: scroll;
+    position: absolute;
+
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 0.5rem;
+}
+
+
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: lightgray;
+}
+.close-button:hover {
+    background-color: darkgray;
+}
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }

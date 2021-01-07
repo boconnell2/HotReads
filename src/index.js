@@ -55,7 +55,6 @@ function renderHomePage() {
 }
 
 function renderLibrary() {
-    console.log('hiiii')
     libraryHeading.textContent = 'Library'
     bookShelfHeading.textContent = 'Bookshelf'
     borrowedHeading.textContent = "Books You've Borrowed"
@@ -67,9 +66,16 @@ function renderBook(bookObj){
     
     bookDisplayHome.innerHTML += `
     <div class="book-card" id=${bookObj.id}> 
-     <h4>${bookObj.title}</h4>
-     <h6> ${bookObj.author}</h6>
-     <p> ${bookObj.year} </p>
+     <div class="book-img">
+        <img class="book-photo" src="${bookObj.img}">
+     </div>
+     <div class="book-content">
+        <h4 class="book-title">${bookObj.title}</h4>
+        <h6 class="book-author"> ${bookObj.author}</h6>
+        <p class="book-year"> Rating: ${bookObj.rating}/5.0 </p>
+         <div class="book-see book-pink">See The Book</div>
+
+     </div>
     </div>
     `
 
@@ -113,11 +119,14 @@ function renderBorrowedBook(copyObj) {
 function renderBookShow(bookObj) {
     bookInfoContainer.id = bookObj.id
     bookInfoContainer.innerHTML = `
-        <h2> ${bookObj.title} </h2>
-        <h3> ${bookObj.author} </h3>
-        <h4> ${bookObj.genre} </h4>
-        <h4> ${bookObj.year} </h4>
-        <h4> ${bookObj.rating} </h4>
+        <div class="show-img"> 
+        <img src="${bookObj.img}">
+        </div>
+        <h3> Title: ${bookObj.title} </h2>
+        <h4> By: ${bookObj.author} </h3>
+        <h5> Genre: ${bookObj.genre} </h4>
+        <h5> Year:${bookObj.year} </h4>
+        <h5> Rating:${bookObj.rating}/5.0 </h4>
         `
     let myBook = bookObj.book_copies.find(copy => copy.user_id == currentUserIdInt)
     if (!myBook) {
@@ -169,7 +178,7 @@ function getBooks() {
         clearLibrary()
         renderHomePage()
         bookArray.forEach((book) => {
-            if (i < 8) {
+            if (i < 5) {
                 renderBook(book)
             }
             i++
@@ -258,10 +267,12 @@ function createNewCopy(copyObj) {
 /********************Event Listeners*********************/
 
 myLibraryButton.addEventListener("click", event => {
+    clearLibrary()
     launchMyLibrary()
 })
 
 homePageHeaderButton.addEventListener("click", event => {
+    clearHomePage()
     launchHomepage()
 })
 

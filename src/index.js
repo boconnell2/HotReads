@@ -118,17 +118,25 @@ function renderBookShow(bookObj) {
         <h4> ${bookObj.genre} </h4>
         <h4> ${bookObj.year} </h4>
         <h4> ${bookObj.rating} </h4>
-        <button class="add">Add to Library</button>
+        `
+    let myBook = bookObj.book_copies.find(copy => copy.user_id == currentUserIdInt)
+    if (!myBook) {
+        bookInfoContainer.innerHTML += `
+            <button class="add">Add to Library</button>
+        `
+    }
 
-    `
     bookShowCopies.innerHTML = ''
-
     let myCopy = bookObj.book_copies.find(copy => copy.borrower_id == currentUserIdInt)
     if (myCopy) {
         bookShowCopies.innerHTML = `
             <p> You are currently borrowing this book. 
-            Btw it is due  ${myCopy.end_date}</p>
+            Btw it is due  ${myCopy.due_date}</p>
         `
+    } else if (myBook) {
+        bookShowCopies.innerHTML = `
+        <p> You own a copy of this book already! </p>
+    ` 
     } else if (bookObj.book_copies.length === 0) {
         bookShowCopies.innerHTML = `
             <p> There are no copies available in your neighborhood :( </p>
@@ -143,7 +151,7 @@ function renderBookShow(bookObj) {
             copyLi.dataset.id = copy.id
             owner.textContent = copy.condition
             rentButton.textContent = "RENT"
-            rentButton.class = 'rent-btn'
+            rentButton.classList.add('rent-btn')
 
             copyLi.append(owner, rentButton)
             bookShowCopies.append(copyLi)
@@ -232,18 +240,19 @@ function removeBookCopy(div) {
 }
 
 function updateBookCopy(updatedCopy){
+    console.log(updatedCopy)
     client.patch(`/book_copies/${updatedCopy.id}`, updatedCopy)
-    .then(rsp => rsp.json())
+
     .then(copyFromDb => {
-       
+       console.log(copyFromDb)
     })
 }
 
 function createNewCopy(copyObj) {
+    console.log(copyObj)
     client.post('/book_copies', copyObj)
-    .then(rsp => rsp.json())
     .then(newCopy => {
-
+        console.log(newCopy)
     })
 }
 /********************Event Listeners*********************/
@@ -303,7 +312,11 @@ bookInfoContainer.addEventListener("click", event => {
         let newBookCopy = {
             user_id: currentUserId,
             book_id: bookInfoContainer.id,
-            condition: "okay..."
+            condition: "okay...",
+            active: false,
+            borrower_id: null,
+            start_date: null,
+            due_date: null
         }
         console.log(newBookCopy)
         event.target.remove()
@@ -317,12 +330,13 @@ bookInfoContainer.addEventListener("click", event => {
 bookShowCopies.addEventListener("click", event => {
     event.preventDefault()
     if(event.target.matches(".rent-btn")){
+        console.log('we in here')
        let rentCopy = {
-        id: event.target.closest("li").id,
+        id: event.target.closest("li").dataset.id,
         borrower_id: currentUserId,
         active: true,
-        startDate: "01/06/2021",
-        endDate: "01/20/2021"
+        start_date: "01/08/2021",
+        due_date: "01/22/2021"
        } 
        updateBookCopy(rentCopy)
        bookShowCopies.innerHTML = `
@@ -340,6 +354,7 @@ window.addEventListener("click", windowOnClick)
 function launchHomepage() {
     getBooks()
     getUsers()
+    modal.style.display = 'none'
 }
 
 function launchMyLibrary() {

@@ -27,9 +27,9 @@ const bookInfoContainer = document.querySelector(".book-info")
 const bookShowCopies = document.querySelector(".copies")
 
 // Current User Hardcodes
-let currentUser = 'bert.hilll'
-let currentUserId = '2'
-let currentUserIdInt = 2
+let currentUser = 'eileen'
+let currentUserId = '32'
+let currentUserIdInt = 32
 
 /************************ Clear Page Function ***********************/
 function clearHomePage() {
@@ -92,9 +92,10 @@ function renderUser(userObj){
 function renderBookshelfBook(copyObj) {
     userBookshelf.innerHTML += `
     <div class="myLibraryBook" id="${copyObj.id}">
+        <img class="user-img" src="${copyObj.book.img}">
         <h3 class="title"> ${copyObj.book.title} </h3>
         <h4 class="author"> ${copyObj.book.author} </h4>
-        <h5 class="status"> ${copyObj.active} </h5>
+    
         <button class="delete">Remove</button>
     </div>
     `
@@ -267,11 +268,13 @@ function createNewCopy(copyObj) {
 /********************Event Listeners*********************/
 
 myLibraryButton.addEventListener("click", event => {
+    homePage.id = "home"
     clearLibrary()
     launchMyLibrary()
 })
 
 homePageHeaderButton.addEventListener("click", event => {
+    homePage.id = "home-page"
     clearHomePage()
     launchHomepage()
 })

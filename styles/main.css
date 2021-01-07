@@ -261,18 +261,22 @@ h3 .home-header {
 
 
 /* Library Page */
+#library-page h2{
+    text-align: center;
+}
 
 #my-library {
     width: 100%;
     display: flex;
-    
-    flex-flow: row wrap;
-    padding: 20px 10px 10px 10px;
+
+    flex-flow: row;
+    padding: 20px 10px 10px 10px; */
     margin: 0px auto;
     justify-content: space-evenly;
 }
 
 #bookshelf-parent{
+    width: 40%;
     text-align: center;
     position: relative;
     display: flex;
@@ -290,10 +294,12 @@ div .myLibraryBook {
     display: flex;
     flex-direction: row;
     padding: 10px;
+    
 }
 
 
 #borrowings-parent {
+    width: 40%;
     text-align: center;
     position: relative;
     display: flex;

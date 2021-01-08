@@ -13,9 +13,9 @@
     <div class="header">
       <div class="browse">
         
-          <div class="search-bar">
-          <input type="text" placeholder="Search Book" />
-          </div>
+          
+          <input class="search-bar" type="text" placeholder="Search Book" />
+          
       </div>
      <div class="header-title">Hot<span>Reads🔥</span></div>
       <div class="profile">
@@ -25,28 +25,37 @@
           <div class="profile-menu">
             <span>My Library</span> 
           </div>
+          
       </div>
    
   </div>
-  <h3 id="home-header"> Hot reads in your neighborhood 🔥🔥</h2>
-  <div id="container"> </div>
-  <h3>Users Near You</h3>
-  <div class="user-home">
-  </div>
-  <h2> My Library</h2>
-  <div id="my-library">
-    <div id="bookshelf-parent"> 
-      <h3> My Bookshelf </h3>
-      <div id="bookshelf-children"></div>
+  <div id="home-page">
+    <h3 id="home-header"> Hot reads in your neighborhood 🔥🔥</h2>
+      <div id="container"> </div>
+    <h3 id="home-users-header">Users Near You</h3>
+      <div class="user-home"></div>
+</div>
+  <div id="library-page">
+    <h2>Library 📚</h2>
+    <div id="my-library">
+      <div id="bookshelf-parent"> 
+        <h3 id="book-shelf-heading"> Bookshelf 📕</h3>
+        <div id="bookshelf-children"></div>
+      </div>
+      <div id="borrowings-parent">
+        <h3 id="borrowings"> Books You've Borrowed 🤝 </h3>
+        <div id="borrowings-children"></div>
+      </div>
     </div>
-    <div id="borrowings-parent">
-      <h3 id="borrowings"> My Borrowed Books </h3>
-      <div id="borrowings-children"></div>
+</div>
+  <div class="overlay">
+    <div class="book-show-modal">
+      <div class="modal-content" >
+        <span class="close-button">×</span>
+        <div class="book-info"></div>
+        <ul class="copies"></ul>
+      </div>
     </div>
-  </div>
-
-  <div id="book-show">
-    <ul class="copies"></ul>
   </div>
 </body>
 </html>
